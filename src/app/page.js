@@ -1,69 +1,134 @@
-import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.js
-            </code>{" "}
-            file.
+    <main className="min-h-screen bg-[#f7f8f2] text-[#183c32]">
+      <header className="border-b border-[#183c32]/10">
+        <nav
+          aria-label="Main navigation"
+          className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-5"
+        >
+          <Link href="/" className="text-3xl font-extrabold tracking-tight">
+            kindred<span className="text-[#e99839]">.</span>
+          </Link>
+
+          <div className="flex items-center gap-5 text-sm font-semibold">
+            <Link
+              href="/events"
+              className="transition hover:text-[#a45c14]"
+            >
+              Upcoming Events
+            </Link>
+
+            <Link
+              href="/login"
+              className="rounded-full bg-[#183c32] px-5 py-3 text-white transition hover:bg-[#285847]"
+            >
+              Login
+            </Link>
+          </div>
+        </nav>
+      </header>
+
+      <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 md:py-24 lg:grid-cols-2">
+        <div>
+          <p className="mb-5 text-xs font-bold uppercase tracking-[0.2em] text-[#56735c]">
+            Small actions. Shared purpose.
+          </p>
+
+          <h1 className="text-5xl font-extrabold leading-[1.08] tracking-tight sm:text-6xl">
+            A better community starts with{" "}
+            <span className="text-[#a45c14]">you.</span>
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+
+          <p className="mt-6 max-w-lg text-lg leading-8 text-[#53665c]">
+            Plant a tree. Share a warm meal. Help a neighbour. Find local
+            service events and turn your time into something that matters.
+          </p>
+
+          <div className="mt-8 flex flex-wrap gap-4">
+            <Link
+              href="/events"
+              className="rounded-full bg-[#183c32] px-6 py-3 font-semibold text-white transition hover:bg-[#285847]"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
+              Explore events →
+            </Link>
+
             <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+              href="#our-purpose"
+              className="rounded-full border border-[#183c32]/25 px-6 py-3 font-semibold transition hover:bg-[#e7ecdf]"
             >
-              Learning
-            </a>{" "}
-            center.
+              Our purpose
+            </a>
+          </div>
+
+          <p className="mt-8 text-sm text-[#53665c]">
+            For your neighbourhood. For each other.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="rounded-[2rem] bg-[#e6ecd9] p-6 sm:p-9">
+          <p className="text-xs font-bold uppercase tracking-[0.2em]">
+            Find your way to give back
+          </p>
+
+          <div className="mt-7 space-y-4">
+            {[
+              {
+                number: "01",
+                title: "Greener neighbourhoods",
+                description: "Plant trees and care for shared green spaces.",
+              },
+              {
+                number: "02",
+                title: "Care that reaches people",
+                description: "Share clothing, food, and everyday essentials.",
+              },
+              {
+                number: "03",
+                title: "Cleaner places to gather",
+                description: "Help keep local streets and parks welcoming.",
+              },
+            ].map((item) => (
+              <div
+                key={item.number}
+                className="flex gap-4 rounded-2xl bg-white/75 p-5"
+              >
+                <span className="text-sm font-bold text-[#a45c14]">
+                  {item.number}
+                </span>
+
+                <div>
+                  <h2 className="font-bold">{item.title}</h2>
+                  <p className="mt-2 text-sm leading-6 text-[#53665c]">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <p className="mt-6 text-sm leading-6 text-[#53665c]">
+            You don’t need to change everything. Start with something nearby.
+          </p>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section
+        id="our-purpose"
+        className="border-t border-[#183c32]/10 px-6 py-12"
+      >
+        <div className="mx-auto max-w-6xl">
+          <h2 className="text-3xl font-bold tracking-tight">
+            Together, local action goes further.
+          </h2>
+          <p className="mt-4 max-w-2xl leading-7 text-[#53665c]">
+            Kindred brings volunteers and community organisers together.
+            Discover a cause you care about, take part in a local event,
+            or invite others to join an initiative of your own.
+          </p>
+        </div>
+      </section>
+    </main>
   );
 }
