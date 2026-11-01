@@ -25,7 +25,7 @@ export default function Features() {
       aria-labelledby="features-heading"
       className="mx-auto max-w-6xl px-6 py-16"
     >
-      <p className="text-xs font-bold uppercase tracking-widest text-[#56735c]">
+      <p className="kindred-muted text-xs font-bold uppercase tracking-widest">
         Made for making a difference
       </p>
 
@@ -36,7 +36,7 @@ export default function Features() {
         Good intentions, made easier.
       </h2>
 
-      <p className="mt-4 max-w-2xl leading-7 text-[#53665c]">
+      <p className="kindred-muted mt-4 max-w-2xl leading-7">
         From discovering an opportunity to organising your own initiative,
         Kindred helps you take the next step.
       </p>
@@ -45,9 +45,9 @@ export default function Features() {
         {features.map((feature) => (
           <article
             key={feature.number}
-            className="rounded-3xl border border-[#183c32]/10 bg-white p-7"
+            className="kindred-card rounded-3xl border border-base-content/10 p-7"
           >
-            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-[#e6ecd9] text-sm font-bold text-[#183c32]">
+            <span className="inline-flex h-12 w-12 items-center justify-center rounded-full bg-base-200 text-sm font-bold">
               {feature.number}
             </span>
 
@@ -55,7 +55,7 @@ export default function Features() {
               {feature.title}
             </h3>
 
-            <p className="mt-4 text-sm leading-7 text-[#53665c]">
+            <p className="kindred-muted mt-4 text-sm leading-7">
               {feature.description}
             </p>
           </article>

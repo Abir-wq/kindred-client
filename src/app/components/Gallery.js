@@ -27,7 +27,7 @@ export default function Gallery() {
       aria-labelledby="gallery-heading"
       className="mx-auto max-w-6xl px-6 py-16"
     >
-      <p className="text-xs font-bold uppercase tracking-widest text-[#56735c]">
+      <p className="kindred-muted text-xs font-bold uppercase tracking-widest">
         Community in action
       </p>
 
@@ -38,7 +38,7 @@ export default function Gallery() {
         Local hands. Lasting change.
       </h2>
 
-      <p className="mt-4 max-w-2xl leading-7 text-[#53665c]">
+      <p className="kindred-muted mt-4 max-w-2xl leading-7">
         A glimpse of volunteering in Bangladesh—from planting trees and
         cleaning parks to sharing meals with people who need them.
       </p>
@@ -47,9 +47,9 @@ export default function Gallery() {
         {photos.map((photo) => (
           <figure
             key={photo.src}
-            className="overflow-hidden rounded-3xl border border-[#183c32]/10 bg-white"
+            className="kindred-card overflow-hidden rounded-3xl border border-base-content/10"
           >
-            <div className="relative aspect-[4/3]">
+            <div className="relative aspect-4/3">
               <Image
                 src={photo.src}
                 alt={photo.alt}
@@ -61,7 +61,7 @@ export default function Gallery() {
 
             <figcaption className="p-6">
               <h3 className="text-xl font-bold">{photo.title}</h3>
-              <p className="mt-3 text-sm leading-7 text-[#53665c]">
+              <p className="kindred-muted mt-3 text-sm leading-7">
                 {photo.description}
               </p>
             </figcaption>
@@ -69,7 +69,7 @@ export default function Gallery() {
         ))}
       </div>
 
-      <p className="mt-5 text-xs leading-6 text-[#53665c]">
+      <p className="kindred-muted mt-5 text-xs leading-6">
         Photos illustrate community initiatives in Bangladesh and do not
         represent events organised by Kindred.
       </p>

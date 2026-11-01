@@ -2,7 +2,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#183c32] px-6 py-12 text-[#f7f8f2]">
+    <footer className="kindred-footer px-6 py-12">
       <div className="mx-auto max-w-6xl">
         <div className="grid gap-10 md:grid-cols-2">
           <div>
@@ -10,20 +10,23 @@ export default function Footer() {
               href="/"
               className="text-3xl font-extrabold tracking-tight"
             >
-              kindred<span className="text-[#e99839]">.</span>
+              kindred<span className="text-accent">.</span>
             </Link>
 
-            <p className="mt-4 max-w-md text-sm leading-7 text-[#d5e0d8]">
+            <p className="mt-4 max-w-md text-sm leading-7 opacity-85">
               Bringing people together through local service.
               Find your community, share your time, and help
               make your neighbourhood a better place.
             </p>
           </div>
 
-          <nav aria-label="Footer navigation" className="md:justify-self-end">
+          <nav
+            aria-label="Footer navigation"
+            className="md:justify-self-end"
+          >
             <h2 className="font-bold">Get involved</h2>
 
-            <ul className="mt-4 space-y-3 text-sm text-[#d5e0d8]">
+            <ul className="mt-4 space-y-3 text-sm">
               <li>
                 <Link href="/events" className="hover:underline">
                   Explore upcoming events
@@ -43,7 +46,7 @@ export default function Footer() {
           </nav>
         </div>
 
-        <div className="mt-10 flex flex-wrap justify-between gap-3 border-t border-white/20 pt-6 text-xs text-[#d5e0d8]">
+        <div className="mt-10 flex flex-wrap justify-between gap-3 border-t border-current/20 pt-6 text-xs">
           <p>© 2026 Kindred. All rights reserved.</p>
           <p>Small actions. Shared purpose.</p>
         </div>

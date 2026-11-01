@@ -1,19 +1,93 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@plugin "daisyui" {
+  themes: light --default, dark;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* Kindred light theme */
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  --color-base-100: #f7f8f2;
+  --color-base-200: #e6ecd9;
+  --color-base-300: #d5deca;
+  --color-base-content: #183c32;
+
+  --color-primary: #183c32;
+  --color-primary-content: #ffffff;
+
+  --color-secondary: #a45c14;
+  --color-secondary-content: #ffffff;
+
+  --color-accent: #e99839;
+  --color-accent-content: #183c32;
+
+  --kindred-card: #ffffff;
+  --kindred-muted: #53665c;
+  --kindred-footer: #183c32;
+  --kindred-footer-text: #f7f8f2;
+}
+
+/* Kindred dark theme */
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --color-base-100: #101c18;
+  --color-base-200: #1b3026;
+  --color-base-300: #2b4537;
+  --color-base-content: #edf3e9;
+
+  --color-primary: #b9d6a3;
+  --color-primary-content: #13251b;
+
+  --color-secondary: #f2b66d;
+  --color-secondary-content: #24180a;
+
+  --color-accent: #f2b66d;
+  --color-accent-content: #24180a;
+
+  --kindred-card: #192923;
+  --kindred-muted: #b8c9bf;
+  --kindred-footer: #0b1511;
+  --kindred-footer-text: #edf3e9;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--color-base-100);
+  color: var(--color-base-content);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.kindred-card {
+  background: var(--kindred-card);
+}
+
+.kindred-muted {
+  color: var(--kindred-muted);
+}
+
+.kindred-footer {
+  background: var(--kindred-footer);
+  color: var(--kindred-footer-text);
+}
+
+:where(a, button, input):focus-visible {
+  outline: 2px solid var(--color-secondary);
+  outline-offset: 4px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
 }

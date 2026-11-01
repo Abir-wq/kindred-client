@@ -1,27 +1,27 @@
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   return (
-    <header className="border-b border-[#183c32]/10 bg-[#f7f8f2] text-[#183c32]">
+    <header className="border-b border-base-content/10 bg-base-100 text-base-content">
       <nav
         aria-label="Main navigation"
         className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-5"
       >
         <Link href="/" className="text-3xl font-extrabold tracking-tight">
-          kindred<span className="text-[#e99839]">.</span>
+          kindred<span className="text-accent">.</span>
         </Link>
 
-        <div className="flex items-center gap-5 text-sm font-semibold">
-          <Link
-            href="/events"
-            className="transition hover:text-[#a45c14]"
-          >
+        <div className="flex flex-wrap items-center gap-3 text-sm font-semibold sm:gap-5">
+          <Link href="/events" className="transition hover:text-secondary">
             Upcoming Events
           </Link>
 
+          <ThemeToggle />
+
           <Link
             href="/login"
-            className="rounded-full bg-[#183c32] px-5 py-3 text-white transition hover:bg-[#285847]"
+            className="btn btn-primary rounded-full px-5"
           >
             Login
           </Link>
