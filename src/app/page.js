@@ -2,34 +2,7 @@ import Link from "next/link";
 
 export default function Home() {
   return (
-    <main className="min-h-screen bg-[#f7f8f2] text-[#183c32]">
-      <header className="border-b border-[#183c32]/10">
-        <nav
-          aria-label="Main navigation"
-          className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4 px-6 py-5"
-        >
-          <Link href="/" className="text-3xl font-extrabold tracking-tight">
-            kindred<span className="text-[#e99839]">.</span>
-          </Link>
-
-          <div className="flex items-center gap-5 text-sm font-semibold">
-            <Link
-              href="/events"
-              className="transition hover:text-[#a45c14]"
-            >
-              Upcoming Events
-            </Link>
-
-            <Link
-              href="/login"
-              className="rounded-full bg-[#183c32] px-5 py-3 text-white transition hover:bg-[#285847]"
-            >
-              Login
-            </Link>
-          </div>
-        </nav>
-      </header>
-
+   <main className="bg-[#f7f8f2] text-[#183c32]">
       <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 md:py-24 lg:grid-cols-2">
         <div>
           <p className="mb-5 text-xs font-bold uppercase tracking-[0.2em] text-[#56735c]">
@@ -67,7 +40,7 @@ export default function Home() {
           </p>
         </div>
 
-        <div className="rounded-[2rem] bg-[#e6ecd9] p-6 sm:p-9">
+        <div className="rounded-4xl bg-[#e6ecd9] p-6 sm:p-9">
           <p className="text-xs font-bold uppercase tracking-[0.2em]">
             Find your way to give back
           </p>
