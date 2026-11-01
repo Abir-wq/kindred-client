@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Features from "./components/Features";
+import Newsletter from "./components/Newsletter";
 
 export default function Home() {
   return (
@@ -106,6 +107,7 @@ export default function Home() {
       </section>
 
       <Features />
+      <Newsletter />
     </main>
   );
 }
