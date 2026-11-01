@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Features from "./components/Features";
+import Gallery from "./components/Gallery";
 import Newsletter from "./components/Newsletter";
 
 export default function Home() {
@@ -107,6 +108,7 @@ export default function Home() {
       </section>
 
       <Features />
+      <Gallery />
       <Newsletter />
     </main>
   );
