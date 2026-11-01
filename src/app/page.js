@@ -1,8 +1,9 @@
 import Link from "next/link";
+import Features from "./components/Features";
 
 export default function Home() {
   return (
-   <main className="bg-[#f7f8f2] text-[#183c32]">
+    <main className="bg-[#f7f8f2] text-[#183c32]">
       <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 md:py-24 lg:grid-cols-2">
         <div>
           <p className="mb-5 text-xs font-bold uppercase tracking-[0.2em] text-[#56735c]">
@@ -95,6 +96,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold tracking-tight">
             Together, local action goes further.
           </h2>
+
           <p className="mt-4 max-w-2xl leading-7 text-[#53665c]">
             Kindred brings volunteers and community organisers together.
             Discover a cause you care about, take part in a local event,
@@ -102,6 +104,8 @@ export default function Home() {
           </p>
         </div>
       </section>
+
+      <Features />
     </main>
   );
 }
