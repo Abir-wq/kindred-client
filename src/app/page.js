@@ -1,7 +1,11 @@
+
 import Link from "next/link";
 import Features from "./components/Features";
 import Gallery from "./components/Gallery";
 import Newsletter from "./components/Newsletter";
+
+const API_URL =
+  process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 const causes = [
   {
@@ -21,9 +25,32 @@ const causes = [
   },
 ];
 
-export default function Home() {
+async function getFeaturedEvents() {
+  try {
+    const response = await fetch(
+      `${API_URL}/api/events/featured`,
+      { cache: "no-store" }
+    );
+
+    if (!response.ok) {
+      throw new Error("Could not load featured events.");
+    }
+
+    const data = await response.json();
+    return data.events || [];
+  } catch (error) {
+    console.error("Featured events error:", error);
+    return null;
+  }
+}
+
+export default async function Home() {
+  const featuredEvents = await getFeaturedEvents();
+
   return (
     <main className="bg-base-100 text-base-content">
+
+      {/* Hero Section */}
       <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 md:py-24 lg:grid-cols-2">
         <div>
           <p className="kindred-muted mb-5 text-xs font-bold uppercase tracking-[0.2em]">
@@ -92,6 +119,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Purpose Section */}
       <section
         id="our-purpose"
         className="border-t border-base-content/10 px-6 py-12"
@@ -109,9 +137,116 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Featured Events Section */}
+      <section className="border-t border-base-content/10 px-6 py-16">
+        <div className="mx-auto max-w-6xl">
+
+          <div className="mb-10 flex flex-wrap items-end justify-between gap-5">
+            <div>
+              <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-secondary">
+                Get involved
+              </p>
+
+              <h2 className="text-3xl font-extrabold sm:text-4xl">
+                Featured Community Events
+                <span className="text-accent">.</span>
+              </h2>
+
+              <p className="kindred-muted mt-4 max-w-xl">
+                Discover upcoming activities and find an opportunity
+                to make a difference.
+              </p>
+            </div>
+
+            <Link
+              href="/events"
+              className="btn btn-outline btn-secondary rounded-full"
+            >
+              View All Events →
+            </Link>
+          </div>
+
+          {featuredEvents === null ? (
+            <div className="rounded-2xl border border-base-content/10 p-8 text-center">
+              <h3 className="text-xl font-bold">
+                Events are temporarily unavailable.
+              </h3>
+
+              <p className="kindred-muted mt-2">
+                Please try again later.
+              </p>
+            </div>
+          ) : featuredEvents.length === 0 ? (
+            <div className="rounded-2xl border border-base-content/10 p-10 text-center">
+              <h3 className="text-xl font-bold">
+                No upcoming events yet.
+              </h3>
+
+              <p className="kindred-muted mt-3">
+                Be the first to organize something meaningful!
+              </p>
+
+              <Link
+                href="/events/create"
+                className="btn btn-primary mt-6 rounded-full"
+              >
+                Create an Event
+              </Link>
+            </div>
+          ) : (
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {featuredEvents.map((event) => (
+                <article
+                  key={event.id}
+                  className="overflow-hidden rounded-2xl border border-base-content/10 bg-base-100 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <img
+                    src={event.imageUrl}
+                    alt={event.title}
+                    className="h-52 w-full object-cover"
+                  />
+
+                  <div className="p-6">
+                    <span className="text-xs font-bold uppercase tracking-wider text-secondary">
+                      {event.eventType}
+                    </span>
+
+                    <h3 className="mt-3 text-xl font-bold">
+                      {event.title}
+                    </h3>
+
+                    <p className="kindred-muted mt-3 line-clamp-3 text-sm">
+                      {event.description}
+                    </p>
+
+                    <div className="kindred-muted mt-5 space-y-2 text-sm">
+                      <p>📍 {event.location}</p>
+
+                      <p>
+                        📅{" "}
+                        {new Date(event.eventDate).toLocaleString()}
+                      </p>
+                    </div>
+
+                    <Link
+                      href={`/events/${event.id}`}
+                      className="btn btn-outline btn-secondary mt-6 w-full rounded-full"
+                    >
+                      View Event
+                    </Link>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Existing Components */}
       <Features />
       <Gallery />
       <Newsletter />
+
     </main>
   );
 }

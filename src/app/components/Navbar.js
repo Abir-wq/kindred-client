@@ -1,5 +1,7 @@
+
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
+import AuthStatus from "./AuthStatus";
 
 export default function Navbar() {
   return (
@@ -13,18 +15,23 @@ export default function Navbar() {
         </Link>
 
         <div className="flex flex-wrap items-center gap-3 text-sm font-semibold sm:gap-5">
-          <Link href="/events" className="transition hover:text-secondary">
+          <Link
+            href="/events"
+            className="transition hover:text-secondary"
+          >
             Upcoming Events
+          </Link>
+
+          <Link
+            href="/my-events"
+            className="transition hover:text-secondary"
+          >
+            My Events
           </Link>
 
           <ThemeToggle />
 
-          <Link
-            href="/login"
-            className="btn btn-primary rounded-full px-5"
-          >
-            Login
-          </Link>
+          <AuthStatus />
         </div>
       </nav>
     </header>
