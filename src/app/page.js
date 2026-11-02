@@ -1,4 +1,4 @@
-
+import { connection } from "next/server";
 import Link from "next/link";
 import Features from "./components/Features";
 import Gallery from "./components/Gallery";
@@ -26,6 +26,8 @@ const causes = [
 ];
 
 async function getFeaturedEvents() {
+  await connection();
+
   try {
     const response = await fetch(
       `${API_URL}/api/events/featured`,
@@ -33,7 +35,9 @@ async function getFeaturedEvents() {
     );
 
     if (!response.ok) {
-      throw new Error("Could not load featured events.");
+      throw new Error(
+        `Could not load featured events: ${response.status}`
+      );
     }
 
     const data = await response.json();
@@ -49,7 +53,6 @@ export default async function Home() {
 
   return (
     <main className="bg-base-100 text-base-content">
-
       {/* Hero Section */}
       <section className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-16 md:py-24 lg:grid-cols-2">
         <div>
@@ -140,7 +143,6 @@ export default async function Home() {
       {/* Featured Events Section */}
       <section className="border-t border-base-content/10 px-6 py-16">
         <div className="mx-auto max-w-6xl">
-
           <div className="mb-10 flex flex-wrap items-end justify-between gap-5">
             <div>
               <p className="mb-3 text-xs font-bold uppercase tracking-[0.2em] text-secondary">
@@ -242,11 +244,9 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Existing Components */}
       <Features />
       <Gallery />
       <Newsletter />
-
     </main>
   );
 }

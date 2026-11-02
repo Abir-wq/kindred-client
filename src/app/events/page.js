@@ -1,3 +1,4 @@
+import { connection } from "next/server";
 import Link from "next/link";
 import { Suspense } from "react";
 
@@ -5,13 +6,15 @@ const API_URL =
   process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
 async function getEvents() {
+  await connection();
+
   try {
     const response = await fetch(`${API_URL}/api/events`, {
       cache: "no-store",
     });
 
     if (!response.ok) {
-      throw new Error("Failed to fetch events");
+      throw new Error(`Failed to fetch events: ${response.status}`);
     }
 
     const data = await response.json();
@@ -46,7 +49,9 @@ async function EventsList() {
       <div className="events-message">
         <span className="events-message-icon">!</span>
         <h2>Something went wrong</h2>
-        <p>We couldn't load community events. Please try again later.</p>
+        <p>
+          We couldn&apos;t load community events. Please try again later.
+        </p>
       </div>
     );
   }
@@ -57,8 +62,8 @@ async function EventsList() {
         <span className="events-message-icon">🌱</span>
         <h2>Something good starts here.</h2>
         <p>
-          There aren't any upcoming events yet. Why not create the first one
-          and bring your community together?
+          There aren&apos;t any upcoming events yet. Why not create the
+          first one and bring your community together?
         </p>
         <Link href="/events/create" className="events-primary-button">
           Create the first event
@@ -147,8 +152,8 @@ async function EventsList() {
 
 function EventsLoading() {
   return (
-    <div className="events-loading">
-      <span className="events-spinner" />
+    <div className="events-loading" role="status">
+      <span className="events-spinner" aria-hidden="true" />
       <p>Finding opportunities to make a difference...</p>
     </div>
   );
@@ -213,7 +218,7 @@ export default function EventsPage() {
             <h2>Every little action counts.</h2>
             <p>
               Whether you volunteer, organize, or simply show up,
-              you're helping build a stronger community.
+              you&apos;re helping build a stronger community.
             </p>
           </div>
         </section>
